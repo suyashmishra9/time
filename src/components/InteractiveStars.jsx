@@ -51,7 +51,7 @@ const InteractiveStars = () => {
 
             const centerX = width / 2;
             const centerY = height / 2;
-            const speed = 0.5; // Moderate slow speed
+            const speed = 0.2; // Moderate slow speed
 
             // ctx.fillStyle = "rgba(255, 255, 255, 0.6)"; 
 

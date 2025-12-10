@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import TimePicker from './components/TimePicker'
 import BreakItem from './components/BreakItem'
+import InteractiveStars from './components/InteractiveStars'
 import { createTime, calculateDurationInMinutes, formatMinutesToHrsMins, addMinutesToTime } from './utils/timeUtils'
 import './App.css'
 
@@ -86,9 +87,7 @@ function App() {
       <div className="time-machine-bg">
         <div className="vortex"></div>
         <div className="grid-layer"></div>
-        <div className="stars-layer-1"></div>
-        <div className="stars-layer-2"></div>
-        <div className="stars-layer-3"></div>
+        <InteractiveStars />
         <div className="shooting-stars-container">
           <div className="shooting-star"></div>
           <div className="shooting-star"></div>

@@ -83,7 +83,24 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="background-glow"></div>
+      <div className="time-machine-bg">
+        <div className="vortex"></div>
+        <div className="grid-layer"></div>
+        <div className="stars-layer-1"></div>
+        <div className="stars-layer-2"></div>
+        <div className="stars-layer-3"></div>
+        <div className="shooting-stars-container">
+          <div className="shooting-star"></div>
+          <div className="shooting-star"></div>
+          <div className="shooting-star"></div>
+          <div className="shooting-star"></div>
+        </div>
+        <div className="clock-rings">
+          <div className="ring ring-1"></div>
+          <div className="ring ring-2"></div>
+          <div className="ring ring-3"></div>
+        </div>
+      </div>
 
       <main className="calculator-layout">
         <header className="app-header">

@@ -1,0 +1,111 @@
+.time-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.time-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.time-inputs:focus-within {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.time-select {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.25rem;
+    cursor: pointer;
+    appearance: none;
+    text-align: center;
+    min-width: 40px;
+}
+
+.time-select option {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.time-select:focus {
+    outline: none;
+}
+
+.separator {
+    color: var(--text-secondary);
+    font-weight: 700;
+    margin: 0 0.25rem;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.period-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    margin-left: 0.75rem;
+    padding: 2px;
+}
+
+.period-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.period-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Compact Mode for Breaks */
+.compact .time-select {
+    font-size: 1rem;
+}
+
+.compact .time-inputs {
+    padding: 0.25rem 0.5rem;
+}
+
+.compact .period-btn {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.35rem;
+}

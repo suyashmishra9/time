@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import TimePicker from './components/TimePicker'
 import BreakItem from './components/BreakItem'
-import { createTime, calculateDurationInMinutes, formatMinutesToHrsMins } from './utils/timeUtils'
+import { createTime, calculateDurationInMinutes, formatMinutesToHrsMins, addMinutesToTime } from './utils/timeUtils'
 import './App.css'
 
 function App() {
@@ -28,8 +28,27 @@ function App() {
     }])
   }
 
-  const updateBreak = (id, updatedBreak) => {
-    setBreaks(breaks.map(b => b.id === id ? updatedBreak : b))
+  const updateBreak = (id, newBreakData) => {
+    setBreaks(prevBreaks => prevBreaks.map(b => {
+      if (b.id !== id) return b;
+
+      // Smart synchronization logic
+      const isStartChanged = JSON.stringify(b.start) !== JSON.stringify(newBreakData.start);
+      const isEndChanged = JSON.stringify(b.end) !== JSON.stringify(newBreakData.end);
+      const isMinutesChanged = b.minutes !== newBreakData.minutes;
+
+      let syncedBreak = { ...newBreakData };
+
+      if (isStartChanged || isEndChanged) {
+        // If range changes, calculate new duration
+        syncedBreak.minutes = calculateDurationInMinutes(syncedBreak.start, syncedBreak.end);
+      } else if (isMinutesChanged) {
+        // If duration changes, update end time to match (Start + Mins = End)
+        syncedBreak.end = addMinutesToTime(syncedBreak.start, syncedBreak.minutes);
+      }
+
+      return syncedBreak;
+    }))
   }
 
   const removeBreak = (id) => {
@@ -154,7 +173,7 @@ function App() {
                   <div
                     className="visual-bar-fill"
                     style={{
-                      width: `${Math.min(100, (calculateDurationInMinutes(startTime, endTime) > 0 ? (1 - results.breakMinutes / calculateDurationInMinutes(startTime, endTime)) * 100 : 0))}%`
+                      width: `${Math.min(100, (calculateDurationInMinutes(startTime, endTime) > 0 ? (1 - results.breakMinutes / calculateDurationInMinutes(startTime, endTime)) * 100 : 0))}% `
                     }}
                   ></div>
                 </div>
